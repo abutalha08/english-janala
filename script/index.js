@@ -1,38 +1,51 @@
 //2
-const loadLessons = ()=>{
-    fetch("https://openapi.programming-hero.com/api/levels/all")  //promise of response 
-    .then((res)=> res.json()) //promise of json data
-    .then((json)=> displayLesson(json.data))
+const loadLessons = () => {
+  fetch("https://openapi.programming-hero.com/api/levels/all") //promise of response
+    .then((res) => res.json()) //promise of json data
+    .then((json) => displayLesson(json.data));
 };
 
 //4
-const LoadLevelWord = (id)=>{
-    const url = `https://openapi.programming-hero.com/api/level/${id}`;
-    // console.log(url);
-    fetch(url)
-    .then((res)=> res.json())
-    .then((JsonResponse)=> displayLevelWord(JsonResponse.data))
-}
+const LoadLevelWord = (id) => {
+  const url = `https://openapi.programming-hero.com/api/level/${id}`;
+  // console.log(url);
+  fetch(url)
+    .then((res) => res.json())
+    .then((JsonResponse) => displayLevelWord(JsonResponse.data));
+};
 //5.Display each lesson card when specific lesson btn clicked
-const displayLevelWord = (words)=>{
-    // console.log(word)
-    const wordContainer = document.getElementById("word-container");
-    wordContainer.innerHTML = "";
+const displayLevelWord = (words) => {
+  // console.log(word)
+  const wordContainer = document.getElementById("word-container");
+  wordContainer.innerHTML = "";
 
-    // Took from console   so that i can use these property name as reference to make dynamic word
-//     {
-//     "id": 81,
-//     "level": 1,
-//     "word": "Ball",
-//     "meaning": "বল",
-//     "pronunciation": "বল"
-// }
+  if(words.length === 0){
 
-    words.forEach(word => {
-        console.log(word);
+    wordContainer.innerHTML = `<div class="text-center col-span-full rounded-xl py-10 space-y-4">
+    <img src="./assets/alert-error.png" alt="" class="mx-auto">
+        <p class=" font-bangla text-xl font-normal text-[#79716B]">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
+        <h2 class="font-bangla font-bold text-4xl">নেক্সট Lesson এ যান</h2>
+        
+    </div>`
 
-        const card = document.createElement('div');
-        card.innerHTML = `
+    return; 
+
+  }
+
+  // Took from console   so that i can use these property name as reference to make dynamic word
+  //     {
+  //     "id": 81,
+  //     "level": 1,
+  //     "word": "Ball",
+  //     "meaning": "বল",
+  //     "pronunciation": "বল"
+  // }
+
+  words.forEach((word) => {
+    console.log(word);
+
+    const card = document.createElement("div");
+    card.innerHTML = `
         <div
         class="bg-white rounded-xl shadow-sm text-center py-10 px-5 space-y-4"
       >
@@ -43,8 +56,10 @@ const displayLevelWord = (words)=>{
         <div class="text-2xl font-medium font-bangla">"${
           word.meaning ? word.meaning : "অর্থ পাওয়া যায়নি"
         } / ${
-      word.pronunciation ? word.pronunciation : "Pronounciation পাওয়া  যায়নি"
-    }"</div> 
+          word.pronunciation
+            ? word.pronunciation
+            : "Pronounciation পাওয়া  যায়নি"
+        }"</div> 
         <div class="flex justify-between items-center">
           <button onclick="loadWordDetail(${
             word.id
@@ -61,30 +76,28 @@ const displayLevelWord = (words)=>{
         
         `;
 
-        wordContainer.append(card);
-
-        
-    });
+    wordContainer.append(card);
+  });
 };
 
 //3.For create all lesson btn and show them in my UI
-const displayLesson = (lessons)=> {
-    // 1.Get the container & empty
-    const levelContainer = document.getElementById('level-container');
-    levelContainer.innerHTML = "";
+const displayLesson = (lessons) => {
+  // 1.Get the container & empty
+  const levelContainer = document.getElementById("level-container");
+  levelContainer.innerHTML = "";
 
-    // 2.Get into every lessons
-    for(let lesson of lessons){
-        // 3.Create Element
-        const btnDiv = document.createElement("div");
-        btnDiv.innerHTML = `
+  // 2.Get into every lessons
+  for (let lesson of lessons) {
+    // 3.Create Element
+    const btnDiv = document.createElement("div");
+    btnDiv.innerHTML = `
         <button onclick = "LoadLevelWord(${lesson.level_no})" class="btn btn-outline btn-primary">
         <i class="fa-solid fa-book-open"></i> Lesson - ${lesson.level_no}
-        </button> `
+        </button> `;
 
-        // 4.append into container 
-        levelContainer.append(btnDiv);
-    }
-}
+    // 4.append into container
+    levelContainer.append(btnDiv);
+  }
+};
 //1
 loadLessons();
