@@ -5,13 +5,30 @@ const loadLessons = () => {
     .then((json) => displayLesson(json.data));
 };
 
+//8
+const removeActive = () => {
+  const lessonButtons = document.querySelectorAll(".lesson-btn");
+  //   console.log(lessonButtons);
+  lessonButtons.forEach((btn) => btn.classList.remove("active"));
+};
+
 //4
 const LoadLevelWord = (id) => {
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
   // console.log(url);
   fetch(url)
     .then((res) => res.json())
-    .then((JsonResponse) => displayLevelWord(JsonResponse.data));
+    .then((JsonResponse) => {
+      //9
+      removeActive(); //Remove all active class
+
+      //7
+      const clickBtn = document.getElementById(`lesson-btn-${id}`);
+      // console.log(clickBtn);
+      clickBtn.classList.add("active"); //Add only add remove class on clicked button
+
+      displayLevelWord(JsonResponse.data);
+    });
 };
 //5.Display each lesson card when specific lesson btn clicked
 const displayLevelWord = (words) => {
@@ -19,17 +36,16 @@ const displayLevelWord = (words) => {
   const wordContainer = document.getElementById("word-container");
   wordContainer.innerHTML = "";
 
-  if(words.length === 0){
-
+  //6.If any lessons have no words to display
+  if (words.length === 0) {
     wordContainer.innerHTML = `<div class="text-center col-span-full rounded-xl py-10 space-y-4">
     <img src="./assets/alert-error.png" alt="" class="mx-auto">
         <p class=" font-bangla text-xl font-normal text-[#79716B]">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
         <h2 class="font-bangla font-bold text-4xl">নেক্সট Lesson এ যান</h2>
         
-    </div>`
+    </div>`;
 
-    return; 
-
+    return;
   }
 
   // Took from console   so that i can use these property name as reference to make dynamic word
@@ -91,7 +107,7 @@ const displayLesson = (lessons) => {
     // 3.Create Element
     const btnDiv = document.createElement("div");
     btnDiv.innerHTML = `
-        <button onclick = "LoadLevelWord(${lesson.level_no})" class="btn btn-outline btn-primary">
+        <button id = "lesson-btn-${lesson.level_no}" onclick = "LoadLevelWord(${lesson.level_no})" class="btn btn-outline btn-primary lesson-btn">
         <i class="fa-solid fa-book-open"></i> Lesson - ${lesson.level_no}
         </button> `;
 
