@@ -4,6 +4,12 @@ const createElements = (arr) => {
   return htmlElements.join(" ");
 };
 
+//15
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-US";
+  window.speechSynthesis.speak(utterance);
+}
 
 // 13
 const manageSpinner = (status) => {
@@ -136,10 +142,10 @@ const displayLevelWord = (words) => {
           word.pronunciation ? word.pronunciation : "Pronunciation পাওয়া  যায়নি"
         }"</div> 
         <div class="flex justify-between items-center">
-          <button onclick="loadWordDetail(${word.id})" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]">
+          <button onclick = "loadWordDetail(${word.id})" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]">
             <i class="fa-solid fa-circle-info"></i>
           </button>
-          <button  class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]">
+          <button onclick = "pronounceWord('${word.word}')"  class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]">
             <i class="fa-solid fa-volume-high"></i>
           </button>
         </div>
@@ -176,7 +182,6 @@ const displayLesson = (lessons) => {
 loadLessons();
 
 // 14
-
 document.getElementById("btn-search").addEventListener("click", () => {
   removeActive();
   const input = document.getElementById("input-search");
@@ -189,7 +194,7 @@ document.getElementById("btn-search").addEventListener("click", () => {
       const allWords = data.data;
       console.log(allWords);
       const filterWords = allWords.filter((word) =>
-        word.word.toLowerCase().includes(searchValue)
+        word.word.toLowerCase().includes(searchValue),
       );
 
       displayLevelWord(filterWords);
