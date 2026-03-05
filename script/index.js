@@ -2,8 +2,19 @@
 const createElements = (arr) => {
   const htmlElements = arr.map((el) => `<span class="btn">${el}</span>`);
   return htmlElements.join(" ");
-  };
+};
 
+
+// 13
+const manageSpinner = (status) => {
+  if (status == true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("word-container").classList.add("hidden");
+  } else {
+    document.getElementById("word-container").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
+  }
+};
 
 //2
 const loadLessons = () => {
@@ -21,6 +32,7 @@ const removeActive = () => {
 
 //4
 const loadLevelWord = (id) => {
+  manageSpinner(true);
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
   // console.log(url);
   fetch(url)
@@ -39,13 +51,13 @@ const loadLevelWord = (id) => {
 };
 
 //10
-const loadWordDetail = async(id) =>{
+const loadWordDetail = async (id) => {
   const url = `https://openapi.programming-hero.com/api/word/${id}`;
   // console.log(url);
   const response = await fetch(url);
   const details = await response.json();
   displayWordDetails(details.data);
-}
+};
 
 //11
 const displayWordDetails = (word) => {
@@ -55,8 +67,8 @@ const displayWordDetails = (word) => {
     <div class="">
             <h2 class="text-2xl font-bold">
               ${word.word} (<i class="fa-solid fa-microphone-lines"></i> :${
-    word.pronunciation
-  })
+                word.pronunciation
+              })
             </h2>
           </div>
           <div class="">
@@ -92,6 +104,8 @@ const displayLevelWord = (words) => {
         
     </div>`;
 
+    manageSpinner(false);
+
     return;
   }
 
@@ -119,9 +133,7 @@ const displayLevelWord = (words) => {
         <div class="text-2xl font-medium font-bangla">"${
           word.meaning ? word.meaning : "অর্থ পাওয়া যায়নি"
         } / ${
-          word.pronunciation
-            ? word.pronunciation
-            : "Pronunciation পাওয়া  যায়নি"
+          word.pronunciation ? word.pronunciation : "Pronunciation পাওয়া  যায়নি"
         }"</div> 
         <div class="flex justify-between items-center">
           <button onclick="loadWordDetail(${word.id})" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]">
@@ -137,6 +149,8 @@ const displayLevelWord = (words) => {
 
     wordContainer.append(card);
   });
+
+  manageSpinner(false);
 };
 
 //3.For create all lesson btn and show them in my UI
@@ -160,3 +174,24 @@ const displayLesson = (lessons) => {
 };
 //1
 loadLessons();
+
+// 14
+
+document.getElementById("btn-search").addEventListener("click", () => {
+  removeActive();
+  const input = document.getElementById("input-search");
+  const searchValue = input.value.trim().toLowerCase();
+  console.log(searchValue);
+
+  fetch("https://openapi.programming-hero.com/api/words/all")
+    .then((res) => res.json())
+    .then((data) => {
+      const allWords = data.data;
+      console.log(allWords);
+      const filterWords = allWords.filter((word) =>
+        word.word.toLowerCase().includes(searchValue)
+      );
+
+      displayLevelWord(filterWords);
+    });
+});
