@@ -1,4 +1,4 @@
-# English Janala 🇬🇧📚
+# English Janala
 
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![HTML5](https://img.shields.io/badge/HTML5-orange)](https://developer.mozilla.org/en-US/docs/Web/HTML)
