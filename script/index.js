@@ -198,5 +198,6 @@ document.getElementById("btn-search").addEventListener("click", () => {
       );
 
       displayLevelWord(filterWords);
+
     });
 });

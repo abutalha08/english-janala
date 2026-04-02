@@ -36,283 +36,77 @@
     <!-- Stylesheet  -->
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body>
-    <!-- Navbar  -->
-    <header>
-      <div class="navbar bg-base-100 shadow-sm">
-        <div class="navbar-start">
-          <div class="dropdown">
-            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </div>
-            <ul
-              tabindex="-1"
-              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a href="" class=""
-                  ><i class="fa-solid fa-circle-question"></i> FAQ</a
-                >
-              </li>
-              <li>
-                <a href="" class=""
-                  ><i class="fa-solid fa-book-open"></i> Learn</a
-                >
-              </li>
-              <li>
-                <a href="" class=""
-                  ><i class="fa-solid fa-arrow-right-from-bracket"></i>
-                  Logout</a
-                >
-              </li>
-            </ul>
-          </div>
-          <a href="" class="flex items-center gap-1">
-            <span class="text-lg font-bold">English</span>
-            <img src="./assets/logo.png" alt="" />
-            <span class="font-bangla font-semibold text-lg">জানালা</span>
-          </a>
-        </div>
-        <div class="navbar-end hidden lg:flex">
-          <ul class="menu menu-horizontal px-1 space-x-4">
-            <li>
-              <a href="" class="btn btn-outline btn-primary"
-                ><i class="fa-solid fa-circle-question"></i> FAQ</a
-              >
-            </li>
-            <li>
-              <a href="" class="btn btn-outline btn-primary"
-                ><i class="fa-solid fa-book-open"></i> Learn</a
-              >
-            </li>
-            <li>
-              <a href="" class="btn btn-outline btn-primary"
-                ><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </header>
+  <body class="min-h-screen max-w-full bg-base-200 mx-auto">
+    <!-- Logo  -->
+    <div class="flex justify-center items-center gap-1 pt-32">
+      <h2 class="text-2xl font-semibold">English</h2>
+      <img src="./assets/logo.png" alt="" />
+      <h2 class="font-bangla text-2xl font-semibold">জানালা</h2>
+    </div>
 
-    <!-- Banner Content  -->
-    <section
-      class="flex flex-col-reverse md:flex-row items-center justify-between gap-10 py-5 w-11/12 mx-auto space-y-5"
-    >
-      <div class="content flex-1 text-center md:text-left">
-        <h2 class="text-4xl font-bold mb-8">
-          <span class="text-sky-400">English</span> is Easy!!
-        </h2>
-        <p class="font-bangla mb-8 md:mb-5">
-          আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা
-          আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে
-          অন্য একটি Level এ
-        </p>
-
-        <fieldset
-          class="fieldset border-base-300 rounded-box max-w-xs border p-4"
-        >
-          <input type="name" class="input" placeholder="Enter your name" />
-
-          <input type="password" class="input" placeholder="Password" />
-
-          <button class="btn btn-primary w-1/2 mt-4">Get Started</button>
-        </fieldset>
-      </div>
-      <div class="image flex-1">
-        <img src="./assets/hero-student.png" alt="" />
-      </div>
-    </section>
-
-    <!-- Let's Learn Vocabularies  -->
-    <section>
-      <h2 class="text-4xl font-bold mb-8 text-center">
-        <span class="text-sky-400">Let's</span> Learn Vocabularies
-      </h2>
-
+    <!-- Login Form  -->
+    <div class="form pt-10">
       <div
-        id="level-container"
-        class="flex gap-5 flex-wrap justify-center"
-      ></div>
-    </section>
-
-    <!-- Search Box  -->
-    <section class="flex justify-center mt-7">
-      <div class="join">
-        <div>
-          <label class="input validator join-item">
-            <input
-              id="input-search"
-              type="text"
-              placeholder="Search Vocabulary Now"
-              required
-            />
-          </label>
-        </div>
-        <button id="btn-search" class="btn btn-primary join-item">
-          Search
-        </button>
-      </div>
-    </section>
-
-   
-
-    <!-- Loading/Spinner  -->
-    <section id="spinner" class="flex justify-center items-center py-10 hidden">
-      <span class="loading loading-bars loading-xl"></span>
-    </section>
-
-    <!-- Display Cards/word container  -->
-    <section
-      id="word-container"
-      class="bg-gray-100 p-10 w-11/12 mx-auto my-10 mb-36 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-    >
-      <div
-        class="bg-sky-100 text-center col-span-full rounded-xl py-10 space-y-4"
+        class="card bg-base-100 w-full max-w-sm shrink-0 shadow mx-auto rounded-2xl"
       >
-        <p class="font-bangla text-xl font-normal text-[#79716B]">
-          আপনি এখনো কোন Lesson Select করেন নি
-        </p>
-        <h2 class="font-bangla font-bold text-4xl">একটি Lesson Select করুন।</h2>
-      </div>
-    </section>
+        <div class="card-body">
+          <fieldset class="fieldset">
+            <label class="label font-bold text-neutral">Mobile Number</label>
+            <input
+              id="input-mobile-number"
+              maxlength="11"
+              minlength="11"
+              type="text"
+              class="input rounded-full bg-base-200"
+              placeholder="Enter your 11 digit number"
+            />
 
+            <br />
+            <label class="label font-bold text-neutral">4 Digit Pin</label>
+            <input
+              id="input-pin-number"
+              type="password"
+              maxlength="4"
+              class="input rounded-full bg-base-200"
+              placeholder="Password"
+            />
 
-     <!-- Frequently Asked Questions section -->
-
-     <section class="mb-36">
-
-      <div class="text-4xl font-bold mb-12 text-center">
-        <h2> <span class="text-sky-400">Frequently</span> Asked Questions</h2>
-      </div>
-     <div class="space-y-2">
-       
-       <details class="collapse collapse-plus bg-base-100 border-base-300 border">
-         <summary class="collapse-title font-semibold">
-           1. How can I start learning English on this website?
-          </summary>
-          <div class="collapse-content text-sm">
-            You can start by exploring our beginner-friendly lessons, tutorials, and practice exercises. Simply choose a topic and begin learning step by step.
-          </div>
-        </details>
-        
-        <details class="collapse collapse-plus bg-base-100 border-base-300 border">
-          <summary class="collapse-title font-semibold">
-            2. Is this website free to use?
-          </summary>
-    <div class="collapse-content text-sm">
-      Yes, most of our learning resources are completely free. However, some advanced features or premium content may require a subscription.
-    </div>
-  </details>
-  
-  <details class="collapse collapse-plus bg-base-100 border-base-300 border">
-    <summary class="collapse-title font-semibold">
-    3. Do I need to log in to access the website?
-  </summary>
-  <div class="collapse-content text-sm">
-    Yes, you need to log in to access the website and its learning features. Please create an account and sign in to continue.
-  </div>
-</details>
-
-<details class="collapse collapse-plus bg-base-100 border-base-300 border">
-  <summary class="collapse-title font-semibold">
-    4. How can I build my English vocabulary?
-  </summary>
-  <div class="collapse-content text-sm">
-    You can improve your vocabulary by practicing daily, learning new words, using flashcards, and engaging with our quizzes and exercises.
-  </div>
-  </details>
-  
-  <details class="collapse collapse-plus bg-base-100 border-base-300 border">
-    <summary class="collapse-title font-semibold">
-      5. Do you offer certificates for completed courses?
-    </summary>
-    <div class="collapse-content text-sm">
-      Yes, we provide certificates for selected courses after successful completion. Check the course details to see if a certificate is included.
-    </div>
-  </details>
-  
-</div>
-
-</section>
-
-<!-- Footer  -->
- <footer class="bg-gray-100 px-10 py-10">
-  <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-
-    <!-- Left Section -->
-    <div>
-      <div class="flex items-center gap-1">
-        <h2 class="text-lg font-semibold">
-          English
-        </h2>
-        <img src="./assets/logo.png" alt="">
-        <h2 class="font-bangla text-lg font-semibold">
-          জানালা
-        </h2>
-
-      </div>
-      <p class="text-sm mt-2 text-gray-600">
-        ইংরেজি শিখুন সহজে
-      </p>
-      <p class="text-xs mt-1 text-gray-500">
-        Providing ED-Tech Applications since 2025
-      </p>
-    </div>
-
-    <!-- Right Section -->
-    <div class="text-center md:text-right">
-      <p class="text-xs text-gray-500 mb-2">FOLLOW US</p>
-      <div class="flex gap-4 justify-center md:justify-end text-lg">
-
-        <a href="#" class="hover:text-blue-600">
-          <i class="fa-brands fa-facebook"></i>
-        </a>
-
-        <a href="#" class="hover:text-red-600">
-          <i class="fa-brands fa-youtube"></i>
-        </a>
-
-        <a href="#" class="hover:text-pink-500">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-
-      </div>
-    </div>
-
-  </div>
-</footer>
-
-
-
-    <!-- Open the modal using ID.showModal() method -->
-    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
-
-    <dialog id="word_modal" class="modal modal-bottom sm:modal-middle">
-      <div class="modal-box">
-        <div id="details-container" class="space-y-5"></div>
-        <div class="modal-action">
-          <form method="dialog">
-            <!-- if there is a button in form, it will close the modal -->
-            <button class="btn">Close</button>
-          </form>
+            <button id="login-btn" class="btn btn-primary mt-4 rounded-full">
+              Login
+            </button>
+          </fieldset>
         </div>
       </div>
-    </dialog>
 
-    <script src="./script/index.js"></script>
+      <!-- Horizontal Line  -->
+      <div class="flex items-center my-4">
+        <hr class="grow border-[#E4E4E7] mx-2" />
+        <span class="px-2 font-normal text-[16px] text-[#1F2937]">OR</span>
+        <hr class="grow border-[#E4E4E7] mx-2" />
+      </div>
+
+      <!-- Demo Credentials  -->
+      <div>
+        <p class="font-normal text-[14px] text-[#64748B] text-center">
+          Demo Credentials:
+        </p>
+      </div>
+
+      <div class="text-center bg-[#F8FAFC] p-7 m-4 rounded">
+        <p>
+          <span class="font-semibold text-[16px] text-[#1F2937]"
+            >Default Number:</span
+          >
+          01234567890
+        </p>
+        <p>
+          <span class="font-semibold text-[16px] text-[#1F2937]"
+            >Default Pin:</span
+          >
+          1234
+        </p>
+      </div>
+    </div>
+    <script src="./script/login.js"></script>
   </body>
 </html>
