@@ -216,7 +216,7 @@ This project helped me understand:
 ### Clone Repository
 
 ```bash
-git clone https://github.com/your-username/english-janala.git
+git clone https://github.com/abutalha08/english-janala.git
 cd english-janala
 ```
 
